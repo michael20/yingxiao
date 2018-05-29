@@ -33,7 +33,7 @@ end if;
 /*==============================================================*/
 create table cost_record 
 (
-   id                   int                            not null,
+   id                   int                            not null AUTO_INCREMENT,
    user_id              int                            null,
    used_year            int                            null,
    used_month           int                            null,
@@ -52,7 +52,7 @@ comment on table cost_record is
 /*==============================================================*/
 create table type 
 (
-   id                   int                            not null,
+   id                   int                            not null AUTO_INCREMENT,
    name                 varchar(20)                    null,
    price                decimal                        null,
    paraent_id           int                            null,
@@ -67,7 +67,7 @@ comment on table type is
 /*==============================================================*/
 create table user 
 (
-   id                   int                            not null,
+   id                   int                            not null AUTO_INCREMENT,
    name                 varchar(20)                    null,
    tel                  varchar(11)                    null,
    addr                 varchar(100)                   null,
