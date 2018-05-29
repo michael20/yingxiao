@@ -4,20 +4,19 @@ import lombok.Data;
 
 @Data
 public class CostRecord {
+    private Integer id;
 
-	private Integer id;
-	
-	private Integer userId;
-	
-	private Integer usedYear; // 使用年份
-	
-	private Integer userdMonth; // 使用月份
-	
-	private double consumption; // 用电量
-	
-	private double sum; // 电费总额
-	
-	private Integer delFlag;
-	
-	private String remark;
+    private Integer userId;
+
+    private Integer usedYear; //使用年
+
+    private Integer usedMonth;//使用月
+
+    private Double consumption; //总用电量
+
+    private Long sum; //电费
+
+    private Integer delFlag;
+
+    private String remark;
 }
