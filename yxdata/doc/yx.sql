@@ -40,7 +40,7 @@ create table cost_record
    consumption          double                         null,
    sum                  decimal                        null,
    del_flag             int                            null,
-   remark               varchar[100]                   null,
+   remark               varchar(100)                   null,
    constraint PK_COST_RECORD primary key clustered (id)
 );
 
@@ -65,7 +65,7 @@ comment on table type is
 /*==============================================================*/
 /* Table: "user"                                                */
 /*==============================================================*/
-create table "user" 
+create table user 
 (
    id                   int                            not null,
    name                 varchar(20)                    null,
@@ -73,9 +73,10 @@ create table "user"
    addr                 varchar(100)                   null,
    type_id              int                            null,
    del_flag             int                            null,
-   remark               varchar[100]                   null,
+   remark               varchar(100)                   null,
    constraint PK_USER primary key clustered (id)
 );
+
 
 comment on table "user" is 
 'user info';
