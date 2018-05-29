@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxdata.dao.CostRecordMapper">
+  <resultMap id="BaseResultMap" type="com.yxdata.domain.CostRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="used_year" jdbcType="INTEGER" property="usedYear" />
+    <result column="used_month" jdbcType="INTEGER" property="usedMonth" />
+    <result column="consumption" jdbcType="DOUBLE" property="consumption" />
+    <result column="sum" jdbcType="DECIMAL" property="sum" />
+    <result column="del_flag" jdbcType="INTEGER" property="delFlag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, used_year, used_month, consumption, sum, del_flag, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cost_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cost_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yxdata.domain.CostRecord">
+    insert into cost_record (id, user_id, used_year, 
+      used_month, consumption, sum, 
+      del_flag, remark)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{usedYear,jdbcType=INTEGER}, 
+      #{usedMonth,jdbcType=INTEGER}, #{consumption,jdbcType=DOUBLE}, #{sum,jdbcType=DECIMAL}, 
+      #{delFlag,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxdata.domain.CostRecord">
+    insert into cost_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="usedYear != null">
+        used_year,
+      </if>
+      <if test="usedMonth != null">
+        used_month,
+      </if>
+      <if test="consumption != null">
+        consumption,
+      </if>
+      <if test="sum != null">
+        sum,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="usedYear != null">
+        #{usedYear,jdbcType=INTEGER},
+      </if>
+      <if test="usedMonth != null">
+        #{usedMonth,jdbcType=INTEGER},
+      </if>
+      <if test="consumption != null">
+        #{consumption,jdbcType=DOUBLE},
+      </if>
+      <if test="sum != null">
+        #{sum,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxdata.domain.CostRecord">
+    update cost_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="usedYear != null">
+        used_year = #{usedYear,jdbcType=INTEGER},
+      </if>
+      <if test="usedMonth != null">
+        used_month = #{usedMonth,jdbcType=INTEGER},
+      </if>
+      <if test="consumption != null">
+        consumption = #{consumption,jdbcType=DOUBLE},
+      </if>
+      <if test="sum != null">
+        sum = #{sum,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxdata.domain.CostRecord">
+    update cost_record
+    set user_id = #{userId,jdbcType=INTEGER},
+      used_year = #{usedYear,jdbcType=INTEGER},
+      used_month = #{usedMonth,jdbcType=INTEGER},
+      consumption = #{consumption,jdbcType=DOUBLE},
+      sum = #{sum,jdbcType=DECIMAL},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
