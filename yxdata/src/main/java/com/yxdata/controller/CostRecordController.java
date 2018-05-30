@@ -17,9 +17,9 @@ public class CostRecordController {
 	
 	@ResponseBody
 	@RequestMapping("/delete")
-	public String deleteByPrimaryKey()
+	public String deleteByPrimaryKey(Integer id)
 	{
-		costRecordServiceImpl.deleteByPrimaryKey(1);
+		costRecordServiceImpl.deleteByPrimaryKey(id);
 		return "delete success";
 	}
 	
