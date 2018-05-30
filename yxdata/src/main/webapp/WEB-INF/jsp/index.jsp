@@ -111,8 +111,12 @@
 				<!-- #sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="active" id="user"><a href="#"> <i
-							class="icon-dashboard"></i> <span class="menu-text"> 用戶管理
+					<li class="active" id="user" data-url="/user" data-url2="/user"><a href="#"> <i
+							class="icon-dashboard" ></i> <span class="menu-text"> 用戶资料
+						</span>
+					</a></li>
+					<li class="active" id="costRecord" data-url="/costRecord" ><a href="#"> <i
+							class="icon-dashboard" ></i> <span class="menu-text"> 电量资料
 						</span>
 					</a></li>
 				</ul>
@@ -174,7 +178,17 @@
 
 	<script type="text/javascript">
 		$(function() {
-			$("#user").on("click", function() {
+			
+			$(".nav-list li").on("click",function(){
+				var url = $(this).data("url");
+				$.ajax({
+					url:"<%=basePath%>" + url,
+					success:function(data){
+						$(".page-content").html(data);
+					}
+				})
+			})
+			<%-- $("#user").on("click", function() {
 				$.ajax({
 					url:"<%=basePath%>/user/index",
 					success:function(data){
@@ -183,6 +197,14 @@
 				})
 			})
 			$("#user").click();
+			$("#costRecord").on("click", function() {
+				$.ajax({
+					url:"<%=basePath%>/costRecord",
+					success:function(data){
+						$(".page-content").html(data);
+					}
+				})
+			}) --%>
 			
 			$(".logOut").on("click",function(){
 				$.ajax({
