@@ -5,6 +5,10 @@
 		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		 http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 		version="3.0">
+	
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
 
   <servlet>
   	<servlet-name>spirngmvc</servlet-name>
@@ -45,8 +49,10 @@
 	<servlet-mapping>  
 	  <servlet-name>default</servlet-name>  
 	  <url-pattern>*.js</url-pattern>  
-	  <url-pattern>*.css</url-pattern>  
-	  <url-pattern>/assets/*"</url-pattern>  
+	  <url-pattern>*.css</url-pattern> 
+	  <url-pattern>*.png</url-pattern>  
+	   <url-pattern>*.jpg</url-pattern>  
+	  <url-pattern>/static/*"</url-pattern>  
 	  <url-pattern>/images/*</url-pattern>  
 	</servlet-mapping>
   
