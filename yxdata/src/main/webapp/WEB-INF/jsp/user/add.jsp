@@ -23,7 +23,7 @@
 
 				<div class="col-sm-4">
 					<input type="text" name="userName" id="userName" placeholder="请输入姓名"
-						class="col-xs-12 col-sm-12" />
+						class="col-xs-12 col-sm-12" required/>
 				</div>
 				<label class="col-sm-2 control-label no-padding-right"
 					for="form-field-1"> 姓别 </label>
