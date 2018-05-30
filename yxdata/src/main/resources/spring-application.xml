@@ -36,7 +36,8 @@
 	<!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->  
 	<tx:annotation-driven transaction-manager="txManager" />  
 	
-	
+	<!-- 开启切面自动代理 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	
 	
