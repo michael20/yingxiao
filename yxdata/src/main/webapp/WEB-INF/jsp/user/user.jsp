@@ -114,30 +114,7 @@ td, th {
 		            style:    'os',
 		            selector: 'td:first-child'
 		        },
-		        order: [[ 1, 'asc' ]],
-		        "oLanguage": {//国际语言转化
-	                   "oAria": {
-	                       "sSortAscending": " - click/return to sort ascending",
-	                       "sSortDescending": " - click/return to sort descending"
-	                   },
-	                   "sLengthMenu": "显示 _MENU_ 记录",
-	                   "sZeroRecords": "对不起，查询不到任何相关数据",
-	                   "sEmptyTable": "未有相关数据",
-	                   "sLoadingRecords": "正在加载数据-请等待...",
-	                   "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
-	                   "sInfoEmpty": "当前显示0到0条，共0条记录",
-	                   "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
-	                   "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
-	                   "sSearch": "模糊查询：",
-	                   "sUrl": "",
-	                   //多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
-	                   "oPaginate": {
-	                       "sFirst": "首页",
-	                       "sPrevious": " 上一页 ",
-	                       "sNext": " 下一页 ",
-	                       "sLast": " 尾页 "
-	                   }
-	               },
+		        order: [[ 1, 'asc' ]]
 	 
 		    } );
 			
@@ -180,10 +157,12 @@ td, th {
 						  debugger
 						 var data =  getFormData("#add-form");
 						 
-						 if(!validForm("#add-form")){
+						 /* if(!validForm("#add-form")){
 							 layer.msg("内容不能为空！");
 							 return;
-						 }
+						 } */
+						var flag =  $("#add-form").valid();
+						 if(!flag)return;
 						 $.ajax({
 							 url:"<%=basePath%>/user",
 							 async:false,
@@ -194,7 +173,8 @@ td, th {
 								 userTable.ajax.reload();
 							 }
 						 })
-						 layer.close(index);
+						 layer.close(index); 
+						 
 					  },
 					});
 			})

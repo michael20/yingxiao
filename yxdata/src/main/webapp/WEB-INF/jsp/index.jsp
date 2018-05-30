@@ -20,6 +20,14 @@
 	href="<%=basePath%>/static/ace/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet"
 	href="<%=basePath%>/static/ace/assets/css/ace-skins.min.css" />
+<style type="text/css">
+.error{
+border-color:red !important;
+}
+label.error{
+display:none !important;
+}
+</style>
 </head>
 <body>
 	<div class="navbar navbar-default" id="navbar">
@@ -170,6 +178,9 @@
 
 	<script type="text/javascript" src="<%=basePath %>/static/ace/assets/js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/static/util/pligins.ext.js"></script>
+	
 	<script src="<%=basePath%>/static/ace/assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/static/layer/layer.js"></script>
 	<%-- 	<script src="<%=basePath %>/static/ace/assets/js/typeahead-bs2.min.js"></script>
