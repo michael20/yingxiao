@@ -19,14 +19,14 @@ public class CostRecordServiceImpl implements CostRecordService {
 		// TODO Auto-generated method stub
 		
 		return costRecordMapper.deleteByPrimaryKey(id);
-//		return 0;
+//		return 0;  //
 	}
 
 	@Override
 	public int insert(CostRecord record) {
 		// TODO Auto-generated method stub
 		return costRecordMapper.insert(record);
-//		return 0;
+//		return 0;   
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.yxdata.service;
 
 import com.yxdata.domain.CostRecord;
 
+//
 public interface CostRecordService {
 
 	int deleteByPrimaryKey(Integer id);
