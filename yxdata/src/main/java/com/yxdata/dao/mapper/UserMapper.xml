@@ -114,4 +114,31 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAll" parameterType="com.yxdata.domain.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+    <if test="name != null and name !=''">
+       and name like concat (#{name,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="tel != null and tel !=''">
+        and tel like concat (#{tel,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="addr != null and addr !=''">
+        and addr like concat (#{addr,jdbcType=VARCHAR}, '%') 
+      </if>
+      <if test="typeId != null">
+        and type_id like concat (#{typeId,jdbcType=INTEGER}, '%')
+      </if>
+      <if test="delFlag != null">
+        and del_flag like concat(#{delFlag,jdbcType=INTEGER}, '%')
+      </if>
+      <if test="remark != null and remark !=''">
+        and remark like concat(#{remark,jdbcType=VARCHAR}, '%')
+      </if>
+    </where>
+  </select>
+  
 </mapper>

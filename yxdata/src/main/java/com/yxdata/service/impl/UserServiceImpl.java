@@ -1,5 +1,7 @@
 package com.yxdata.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int updateByPrimaryKey(User record) {
 		return userMapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<User> selectAll(User user) {
+		return userMapper.selectAll(user);
 	}
 
 }
