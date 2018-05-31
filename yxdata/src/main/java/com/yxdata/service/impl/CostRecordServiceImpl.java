@@ -1,10 +1,13 @@
 package com.yxdata.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yxdata.dao.CostRecordMapper;
 import com.yxdata.domain.CostRecord;
+import com.yxdata.domain.User;
 import com.yxdata.service.CostRecordService;
 
 @Service
@@ -12,6 +15,7 @@ public class CostRecordServiceImpl implements CostRecordService {
 
 	@Autowired
 	private CostRecordMapper costRecordMapper;
+	
 	
 	
 	@Override
@@ -56,5 +60,12 @@ public class CostRecordServiceImpl implements CostRecordService {
 		return costRecordMapper.updateByPrimaryKey(record);
 //		return 0;
 	}
+
+	@Override
+	public List<CostRecord> selectByCostRecord(CostRecord record) {
+		return costRecordMapper.selectByCostRecord(record);
+//		return null;
+	}
+
 
 }

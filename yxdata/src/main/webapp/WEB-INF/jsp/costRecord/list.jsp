@@ -48,7 +48,7 @@ td, th {
 					<th>用电年份</th>
 					<th>用电月份</th>
 					<th>用电量</th>
-					<th>费用</th>
+					<th>总价</th>
 					<th>备注</th>
 				</tr>
 			</thead>
@@ -124,9 +124,12 @@ td, th {
 				for(var i = 0 ; i < selects.length; i++){
 					rs.push(selects[i].value);
 				}
+				console.log("rs:"+rs.toString());
+				
+				
 				//发删除请求
-				 $.ajax({
-					 url:"<%=basePath%>/user",
+ 				 $.ajax({
+					 url:"<%=basePath%>/costRecord/delete",
 					 data:{
 						 id:rs.toString()
 					 },
@@ -134,7 +137,8 @@ td, th {
 						 layer.msg("删除成功！");
 						 userTable.ajax.reload();
 					 }
-				})
+				}) 
+				
 			})
 			
 			$("#btn-add").on("click",function(){
@@ -147,12 +151,12 @@ td, th {
 					  yes:function(index, layero){
 						 /*  debugger */
 						 var data =  getFormData("#add-form");
-						 console.log(data["userName"]);
+					/* 	 console.log(data["userName"]);
 						 console.log(data["usedYear"]);
 						 console.log(data["usedMonth"]);
 						 console.log(data["consumption"]);
 						 console.log(data["sum"]);
-						 console.log(data["remark"]);
+						 console.log(data["remark"]); */
 						 
 					 	 console.log("add-form:"+ data["userName"]+" basePath:"+"<%=basePath%>");
 					 	 if(!validForm("#add-form")){
@@ -177,7 +181,7 @@ td, th {
 		//修改
 		$("#btn-mod").on("click",function(){
 			var selects = $("#userTable input:checked");
-			
+		
 			if(selects.length > 1 || selects.length == 0){
 				layer.msg("只能选择一个进行修改！");
 				return false;
@@ -193,22 +197,24 @@ td, th {
 						  
 						 
 						  $("#add-form #userName").val(sdata.userName);
-						  $("#add-form #sex").val(sdata.sex);
-						  $("#add-form #age").val(sdata.age);
-						  $("#add-form #addr").val(sdata.addr);
-						  $("#add-form #idcard").val(sdata.idcard);
+						  $("#add-form #usedYear").val(sdata.usedYear);
+						  $("#add-form #usedMonth").val(sdata.usedMonth);
+						  $("#add-form #consumption").val(sdata.consumption);
+						  $("#add-form #sum").val(sdata.sum);
+						  $("#add-form #remark").val(sdata.remark);
 					  },
 					  yes:function(index, layero){
 						 var data =  getFormData("#add-form");
 						 data.id = sdata.id;
-						 if(!validForm("#add-form")){
+						/*  if(!validForm("#add-form")){
 							 layer.msg("内容不能为空！");
 							 return;
-						 }
+						 } */
+						 console.log("data:"+data);
 						 $.ajax({
-							 url:"<%=basePath%>/user",
+							 url:"<%=basePath%>/costRecord/update",
 							 async:false,
-							 type:"PUT",
+							 type:"post",
 							 data:data,
 							 success:function(data){
 								 layer.msg("修改成功！");

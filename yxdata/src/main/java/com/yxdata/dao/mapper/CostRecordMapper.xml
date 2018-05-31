@@ -125,4 +125,71 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+<!-- 新增的select -->
+	<select id="selectByCostRecord" parameterType="com.yxdata.domain.CostRecord"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cost_record
+		<where>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+
+			</if>
+
+			<if test="usedYear != null">
+				and used_year = #{usedYear,jdbcType=INTEGER}
+			</if>
+			<if test="usedMonth != null">
+				and used_month = #{usedMonth,jdbcType=INTEGER}
+			</if>
+			<if test="consumption != null">
+				and consumption = #{consumption,jdbcType=DOUBLE}
+			</if>
+			<if test="sum != null">
+				and sum = #{sum,jdbcType=DECIMAL}
+			</if>
+			<if test="delFlag != null">
+				and del_flag = #{delFlag,jdbcType=INTEGER}
+			</if>
+			<if test="remark != null and remark !=''">
+				and remark = #{remark,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	
+	<!-- 混合user的select -->
+	
+  <sql id="User_Base_Column_List">
+	id, name, tel, addr, type_id, del_flag, remark
+  </sql>
+	<select id="selectUsers" parameterType="com.yxdata.domain.User"
+		resultMap="BaseResultMap">
+		select
+		<include refid="User_Base_Column_List" />
+		from user
+		<where>
+			<if test="name != null and name !=''">
+				and name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null and tel !=''">
+				and tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="addr != null and addr !=''">
+				and addr = #{addr,jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				and type_id = #{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="delFlag != null">
+				and del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null and remark !=''">
+				and remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</where>
+	</select>
 </mapper>

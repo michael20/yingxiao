@@ -1,6 +1,9 @@
 package com.yxdata.service;
 
+import java.util.List;
+
 import com.yxdata.domain.CostRecord;
+import com.yxdata.domain.User;
 
 //
 public interface CostRecordService {
@@ -12,6 +15,8 @@ public interface CostRecordService {
     int insertSelective(CostRecord record);
 
     CostRecord selectByPrimaryKey(Integer id);
+    
+    List<CostRecord> selectByCostRecord(CostRecord record);
 
     int updateByPrimaryKeySelective(CostRecord record);
 
