@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yxdata.common.ResultMap;
+import com.yxdata.common.ResultBean;
 
 /**
  * @author Administrator
@@ -40,6 +40,13 @@ public class LoginController {
 		}
 		req.setAttribute("error", "用户名或密码错误！请重试！");
 		return "redirect:/login.jsp";
+	}
+	
+	@RequestMapping("/result")
+	@ResponseBody
+	public ResultBean test() {
+		
+		return new ResultBean();
 	}
 	
 }
