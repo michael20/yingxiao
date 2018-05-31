@@ -85,7 +85,7 @@
        			}
        			//处理自定义的提示
        			if(validate){
-       				$.extend( true,rules, eval("(" + validate + ")"));
+       				$.extend( rules,  $.validator.classRuleSettings[ validate ]);
        			}
        			return rules;
        		
@@ -213,7 +213,8 @@
 
        // 电话号码验证    
        jQuery.validator.addMethod("Phone", function(value, element) {    
-         var tel = /^(\d{3,4}-?)?\d{7,9}$/g;    
+    	   debugger;
+    	   var tel = /^(\d{3,4}-?)?\d{7,9}$/g;    
          return this.optional(element) || (tel.test(value));    
        }, "请正确填写您的电话号码。");
 
