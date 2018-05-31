@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yxdata.domain.CostRecord;
 import com.yxdata.domain.User;
+import com.yxdata.vo.CostRecordVo;
 
 //
 public interface CostRecordService {
@@ -16,7 +17,7 @@ public interface CostRecordService {
 
     CostRecord selectByPrimaryKey(Integer id);
     
-    List<CostRecord> selectByCostRecord(CostRecord record);
+    List<CostRecordVo> selectByCostRecord(CostRecordVo costRecordVo);
 
     int updateByPrimaryKeySelective(CostRecord record);
 

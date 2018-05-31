@@ -9,6 +9,7 @@ import com.yxdata.dao.CostRecordMapper;
 import com.yxdata.domain.CostRecord;
 import com.yxdata.domain.User;
 import com.yxdata.service.CostRecordService;
+import com.yxdata.vo.CostRecordVo;
 
 @Service
 public class CostRecordServiceImpl implements CostRecordService {
@@ -62,8 +63,8 @@ public class CostRecordServiceImpl implements CostRecordService {
 	}
 
 	@Override
-	public List<CostRecord> selectByCostRecord(CostRecord record) {
-		return costRecordMapper.selectByCostRecord(record);
+	public List<CostRecordVo> selectByCostRecord(CostRecordVo costRecordVo) {
+		return costRecordMapper.selectByCostRecord(costRecordVo);
 //		return null;
 	}
 

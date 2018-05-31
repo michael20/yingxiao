@@ -1,5 +1,7 @@
 package com.yxdata.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yxdata.domain.CostRecord;
 import com.yxdata.domain.User;
 import com.yxdata.service.impl.CostRecordServiceImpl;
+import com.yxdata.vo.CostRecordVo;
 
 @Controller
 @RequestMapping("/costRecord")
@@ -49,13 +52,14 @@ public class CostRecordController {
 		return costRecordServiceImpl.selectByPrimaryKey(id).toString();
 	}
 	
-	@ResponseBody
+	@ResponseBody()
 	@RequestMapping("/select2")
-	public String selectByCostRecord(CostRecord record)
+	public String selectByCostRecord(CostRecordVo costRecordVo,HttpServletResponse resp)
 	{
 		JSONObject json=new JSONObject();
-		json.put("data", costRecordServiceImpl.selectByCostRecord(record));
+		json.put("data", costRecordServiceImpl.selectByCostRecord(costRecordVo));
 		System.out.println("jsonstring:"+json.toJSONString());
+		resp.setContentType("application/json;charset=utf-8");
 		return json.toJSONString();
 	}
 	

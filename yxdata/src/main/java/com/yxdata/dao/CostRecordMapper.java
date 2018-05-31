@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yxdata.domain.CostRecord;
 import com.yxdata.domain.User;
+import com.yxdata.vo.CostRecordVo;
 
 public interface CostRecordMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,7 +15,7 @@ public interface CostRecordMapper {
 
     CostRecord selectByPrimaryKey(Integer id);
     
-    List<CostRecord> selectByCostRecord(CostRecord record);
+    List<CostRecordVo> selectByCostRecord(CostRecordVo costRecordVo);
     
     int updateByPrimaryKeySelective(CostRecord record);
 

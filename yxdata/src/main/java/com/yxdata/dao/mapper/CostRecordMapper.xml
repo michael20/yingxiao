@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxdata.dao.CostRecordMapper">
-  <resultMap id="BaseResultMap" type="com.yxdata.domain.CostRecord">
+  <resultMap id="BaseResultMap" type="com.yxdata.vo.CostRecordVo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="used_year" jdbcType="INTEGER" property="usedYear" />
@@ -10,6 +10,9 @@
     <result column="sum" jdbcType="DECIMAL" property="sum" />
     <result column="del_flag" jdbcType="INTEGER" property="delFlag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    
+    <result column="userInfoId" jdbcType="INTEGER" property="userInfoId" />
+    <result column="userInfoName" jdbcType="VARCHAR" property="userInfoName" />
   </resultMap>
   <sql id="Base_Column_List">
     id, user_id, used_year, used_month, consumption, sum, del_flag, remark
@@ -128,34 +131,45 @@
 
 
 <!-- 新增的select -->
-	<select id="selectByCostRecord" parameterType="com.yxdata.domain.CostRecord"
+	<select id="selectByCostRecord" parameterType="com.yxdata.vo.CostRecordVo"
 		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from cost_record
+		select  
+			u.id userInfoId,
+			u.name userInfoName,
+			r.id, 
+			r.user_id, 
+			r.used_year, 
+			r.used_month, 
+			r.consumption, 
+			r.sum, 
+			r.del_flag, 
+			r.remark  
+		FROM  cost_record r
+		left join user u on r.user_id = u.id
 		<where>
-			<if test="userId != null">
-				and user_id = #{userId,jdbcType=INTEGER}
-
+			<if test="userInfoName != null and userInfoName != ''">
+				and u.name = #{userInfoName,jdbcType=VARCHAR}
 			</if>
-
+			<if test="userId != null">
+				and r.user_id = #{userId,jdbcType=INTEGER}
+			</if>
 			<if test="usedYear != null">
-				and used_year = #{usedYear,jdbcType=INTEGER}
+				and r.used_year = #{usedYear,jdbcType=INTEGER}
 			</if>
 			<if test="usedMonth != null">
-				and used_month = #{usedMonth,jdbcType=INTEGER}
+				and r.used_month = #{usedMonth,jdbcType=INTEGER}
 			</if>
 			<if test="consumption != null">
-				and consumption = #{consumption,jdbcType=DOUBLE}
+				and r.consumption = #{consumption,jdbcType=DOUBLE}
 			</if>
 			<if test="sum != null">
-				and sum = #{sum,jdbcType=DECIMAL}
+				and r.sum = #{sum,jdbcType=DECIMAL}
 			</if>
 			<if test="delFlag != null">
-				and del_flag = #{delFlag,jdbcType=INTEGER}
+				and r.del_flag = #{delFlag,jdbcType=INTEGER}
 			</if>
 			<if test="remark != null and remark !=''">
-				and remark = #{remark,jdbcType=VARCHAR}
+				and r.remark = #{remark,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

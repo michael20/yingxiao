@@ -11,6 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONObject;
+import com.yxdata.common.ResultMap;
 
 /**
  * @author Administrator
@@ -37,4 +41,5 @@ public class LoginController {
 		req.setAttribute("error", "用户名或密码错误！请重试！");
 		return "redirect:/login.jsp";
 	}
+	
 }
