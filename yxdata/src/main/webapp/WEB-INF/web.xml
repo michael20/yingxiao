@@ -10,21 +10,40 @@
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 
+
+	<!-- 引入springmvc DispatcherServlet 核心控制器-->
   <servlet>
   	<servlet-name>spirngmvc</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	
+  	<!-- 指定springmvc的配置文件的路徑 -->
   	<init-param>
     	<param-name>contextConfigLocation</param-name>
     	<param-value>classpath:/spring-application.xml</param-value>
     </init-param>
+    
+    <!-- 項目啟動的時候就加載 -->
     <load-on-startup>1</load-on-startup>
+    
+    
   </servlet>
   
-    <!-- 设置dispatchservlet的匹配模式，通过把dispatchservlet映射到/，默认servlet会处理所有的请求，包括静态资源 -->
+
+  
+    <!-- 设置dispatchservlet的匹配模式，
+    通过把dispatchservlet映射到/，默认servlet会处理所有的请求，包括静态资源
+    /  跟 /* 的區別 
+    -->
   <servlet-mapping>
     <servlet-name>spirngmvc</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+   <!-- 整合springmvc的時候可以省略 -->
+<!--   <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener> -->
+  
   
   
    <!-- 字符集过滤器 -->
@@ -46,7 +65,8 @@
 	</filter-mapping> 
   
   <!-- 静态资源过滤 -->
-	<servlet-mapping>  
+	<servlet-mapping> 
+	 <!-- tomcat 默認的servlet --> 
 	  <servlet-name>default</servlet-name>  
 	  <url-pattern>*.js</url-pattern>  
 	  <url-pattern>*.css</url-pattern> 

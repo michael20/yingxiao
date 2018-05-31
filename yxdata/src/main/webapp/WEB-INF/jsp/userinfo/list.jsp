@@ -151,6 +151,7 @@ td, th {
 						 id:rs.toString()
 					 },
 					 success:function(data){
+						 debugger;
 						 layer.msg("删除成功！");
 						 userTable.ajax.reload();
 					 }
@@ -183,6 +184,7 @@ td, th {
 							 type:"post",
 							 data:data,
 							 success:function(data){
+								 debugger;
 								 layer.msg("保存成功！");
 								 userTable.ajax.reload();
 							 }

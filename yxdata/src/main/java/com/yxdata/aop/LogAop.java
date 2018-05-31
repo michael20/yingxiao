@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogAop {
 	
+	
+	
 	@Pointcut("@annotation(com.yxdata.aop.LogAnnotation)")
 	public void logAopTest() {}
 	

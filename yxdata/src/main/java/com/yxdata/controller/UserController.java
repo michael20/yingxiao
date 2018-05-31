@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxdata.common.ResultBean;
 import com.yxdata.domain.User;
 import com.yxdata.service.UserService;
 
@@ -25,16 +26,16 @@ public class UserController {
 	
 	@RequestMapping("/insert")
 	@ResponseBody
-	public String insert(User user) {
+	public ResultBean insert(User user) {
 		userServiceImpl.insert(user);
-		return "sucess";
+		return new ResultBean();
 	}
 	
 	@RequestMapping("/delete")
 	@ResponseBody
-	public String delete(Integer id) {
+	public ResultBean delete(Integer id) {
 		userServiceImpl.deleteByPrimaryKey(id);
-		return "delete sucess";
+		return new ResultBean();
 	}
 	
 	@RequestMapping("/update")

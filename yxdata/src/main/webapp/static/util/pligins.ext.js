@@ -305,72 +305,18 @@
     		},
     		  //错误方法增强处理
     		error:function(XMLHttpRequest, textStatus, errorThrown){
-    			
+    			debugger;
     			if(typeof layer == "object" &&  typeof layer.open == "function" ){
     				if(XMLHttpRequest.responseText.indexOf('<meta name="description" content="B3A8EC22CB514BAC17F1B34BDF227838">') != -1){
     					window.location.href=basepath + "/login.jsp";
 						return;
     				};
-//            		layer.open({
-//					    type: 1,
-//					    title:"出错了",
-//					    skin: 'layui-layer-rim', //加上边框
-//					    area: ['600px','400px'], //宽高
-//					    content:  XMLHttpRequest.responseText == undefined?errorThrown.stack:XMLHttpRequest.responseText,
-//					    success:function(layero,index){
-//					    	layero.find(".layui-layer-content").css("margin","0px");
-//					    }
-//					});
             	}else{
             		alert(XMLHttpRequest.responseText);
             	}
             },
             dataFilter:function(data,type){
-            	
-            	if(type == "jsonp")return data;
-            	var strurl = this.url;
-            	if(type!="json" && type )return data;
-            	if( data.indexOf('<meta name="description" content="DCF56B04146DFFADC51E5B619EFEE5EC">') != -1){
-//            		layer.open({
-//            			type:1,
-//            			title:"权限异常！",
-//            			skin: 'layui-layer-rim', //加上边框
-// 					    area: ['600px','400px'], //宽高
-//            			content:data,
-//            			success:function(layero,index){
-//            				layero.find(".layui-layer-content").css("margin","0px");
-//					    }
-//            		});
-            		console.error("您没有权限访问url："+strurl);
-            		return data;
-            	}
-//            	if(data.indexOf('<meta name="description" content="B3A8EC22CB514BAC17F1B34BDF227838">') != -1){
-//					window.location.href=basepath + "/login.jsp";
-//					return;
-//				};
-            	var sdata = "";
-            	try{
-            		sdata = eval("("+data+")");
-            	}catch(e){
-            		return data;
-            	}
-            	
-            	if(!sdata)return data;
-            	if(sdata && sdata.resultCode == "OK_200"){
-            		if(sdata.isOptData)return JSON.stringify(sdata.data.optData);
-            		return  data;
-            	}else if(sdata && sdata.resultCode == "EXCEPTION_501"){
-            		layer.msg(sdata.resultDesc?sdata.resultDesc:"请求出错了，请检查网络配置或联系管理员！");
-            		return data;
-            	}else if(sdata && sdata.resultCode == "PARAM_ERR_401"){
-            		layer.msg(sdata.resultDesc?sdata.resultDesc:"参数错误！");
-            		return data;
-            	}else{
-//            		console.warn("警告：json数据格式不是标准的resultBean格式,有可能导致解析错误！"+"url:"+this.url);
-//            		console.warn(sdata);
-            		return data;
-            	}
-            	
+            	return data;
             }
 
     	});
