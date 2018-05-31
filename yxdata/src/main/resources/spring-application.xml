@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
 	default-autowire="byName" default-lazy-init="false"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
@@ -12,72 +10,66 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-	
-	
-	
+
+
+
 	<!-- 自动扫描包的根路径 -->
 	<context:component-scan base-package="com.yxdata"></context:component-scan>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<!-- 数据源配置 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
 			value="jdbc:mysql://127.0.0.1/yxdata?characterEncoding=utf8&amp;useSSL=true&amp;serverTimezone=GMT%2B8" />
 		<property name="username" value="root" />
 		<property name="password" value="123456" />
 	</bean>
-	
+
 	<!-- 事务配置 -->
-	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	<!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->  
-	<tx:annotation-driven transaction-manager="txManager" />  
-	
+
+	<!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
 	<!-- 开启切面自动代理 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	
-	
-	
+
+
+
 	<!-- mybatis整合spring配置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!--dataSource属性指定要用到的连接池-->
+		<!--dataSource属性指定要用到的连接池 -->
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" 
-			value="classpath:com/yxdata/dao/mapper/*.xml" />
+		<property name="mapperLocations" value="classpath:com/yxdata/dao/mapper/*.xml" />
 	</bean>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.yxdata.dao" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-    </bean>
-    
-    
-    
-    <!-- spirngmvc映射配置 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name="prefix" value="/WEB-INF/jsp/" />
-      <property name="suffix" value=".jsp" />
-    </bean>
-    
-  	
-  	    <mvc:annotation-driven >  
-        <mvc:message-converters register-defaults="true">  
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter" >  
-                <property name = "supportedMediaTypes">  
-                    <list>  
-                        <value>application/json;charset=utf-8</value>  
-                        <value>text/html;charset=utf-8</value>  
-                        <value>application/x-www-form-urlencoded</value>  
-                    </list>  
-                </property>  
-            </bean>  
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" ></bean>  
-        </mvc:message-converters>  
-    </mvc:annotation-driven>   
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.yxdata.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+
+
+	<!-- spirngmvc映射配置 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+    <!-- 註冊轉換器  使用的是jackons的轉換器  pom添加jackson的core 跟 databind依賴-->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 </beans>

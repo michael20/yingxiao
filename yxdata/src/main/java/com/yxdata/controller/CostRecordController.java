@@ -59,7 +59,6 @@ public class CostRecordController {
 		JSONObject json=new JSONObject();
 		json.put("data", costRecordServiceImpl.selectByCostRecord(costRecordVo));
 		System.out.println("jsonstring:"+json.toJSONString());
-		resp.setContentType("application/json;charset=utf-8");
 		return json.toJSONString();
 	}
 	
