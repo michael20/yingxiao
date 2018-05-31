@@ -42,7 +42,7 @@
 //        $.fn.dataTable.defaults.oLanguage=oLanguage;
     	 $.extend(true, $.fn.dataTable.defaults, {
     	        "ajax":{type:"post"}
-    	     });
+    	 });
     }
    
     
@@ -72,6 +72,7 @@
        	//扩展支持 data-validate属性直接配置验证规则
        	jQuery.fn.extend(jQuery.validator, {
        		classRules:function(element){
+       			debugger;
        			var rules = {},
        			validate = $( element ).data( "validate"),
        			classes = $( element ).attr( "class" );

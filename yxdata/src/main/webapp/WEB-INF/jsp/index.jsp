@@ -31,8 +31,6 @@ display:none !important;
 </head>
 <body>
 	<div class="navbar navbar-default" id="navbar">
-
-
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i

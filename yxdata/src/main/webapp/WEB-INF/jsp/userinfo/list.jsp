@@ -168,10 +168,15 @@ td, th {
 						  debugger
 						 var data =  getFormData("#add-form");
 						 
-						 if(!validForm("#add-form")){
+						 /* if(!validForm("#add-form")){
 							 layer.msg("内容不能为空！");
 							 return;
-						 }
+						 } */
+						var flag =  $("#add-form").valid();
+						if(!flag){
+							 layer.msg("数据填写有误！");
+							 return;
+						}
 						 $.ajax({
 							 url:"<%=basePath%>/user/insert",
 							 async:false,

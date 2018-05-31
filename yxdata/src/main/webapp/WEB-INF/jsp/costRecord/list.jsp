@@ -84,10 +84,11 @@ td, th {
 		                    return "<input type='checkbox' value="+ row.id+">";
 		                }  
 		        	},
-		            { "data": "userName",
+		            { "data": "userInfoName",
 		        		render:function(data, type, row, meta)
 		        		{
-		        			if (!row.userName) return "";
+		        			if (!row.userInfoName) return "无";
+		        			return row.userInfoName;
 		        		}
 		            },
 		            { "data": "usedYear"},

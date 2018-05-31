@@ -45,7 +45,7 @@
 
 				<div class="col-sm-4">
 					<input type="text" name="tel" id="tel" placeholder=" 电话 "
-						class="col-xs-12" />
+						class="col-xs-12" required/>
 				</div>
 				<label class="col-sm-2 control-label no-padding-right"
 					for="form-field-1"> 备注 </label>
